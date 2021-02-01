@@ -2,6 +2,7 @@ package com.thiagoasd.ecommercebackend.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import com.thiagoasd.ecommercebackend.Service.ProdutoService;
 
 import javassist.NotFoundException;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class ProdutoController {
@@ -48,10 +50,11 @@ public class ProdutoController {
 		}
 	}
 
-	@PutMapping("/produto")
-	public ResponseEntity<Produto> update(@RequestBody @Valid Produto produto) {
+	@PutMapping("/produto/{id}")
+	public ResponseEntity<Produto> update(@RequestBody @Valid Produto produto, @PathVariable int id) {
+
 		try {
-			return ResponseEntity.ok(produtoService.update(produto.getID(), produto));
+			return ResponseEntity.ok(produtoService.update(id, produto));
 		} catch (NotFoundException e) {
 			return ResponseEntity.notFound().build();
 		}

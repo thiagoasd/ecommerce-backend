@@ -62,14 +62,14 @@ public class PedidoService {
 
 			// Checa se o produto enviado no pedido existe mesmo
 			if (result.isEmpty()) {
-				throw new NotFoundException("Produto " + produtoCesta.getProduto().getName() + " não localizado");
+				throw new NotFoundException("Produto " + produtoCesta.getProduto().getNome() + " não localizado");
 
 			} else {
 
 				// Checa se o valor do produto enviado é o mesmo que está no banco
 				if (result.get().getValor() != produtoCesta.getProduto().getValor()) {
 					throw new Exception(
-							"Produto" + produtoCesta.getProduto().getName() + " com preço diferente do cadastrado");
+							"Produto" + produtoCesta.getProduto().getNome() + " com preço diferente do cadastrado");
 				}
 
 			}

@@ -4,25 +4,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-public class Produto {
-
+public class Promocao {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int ID;
 
 	@NotBlank
 	String nome;
+	
+	@NotBlank
+	String tipo;
+	
+	@NotBlank
+	String info_adicional;
 
+	@NotBlank
+	String info_adicional2;
+	
 	@Min(0)
 	float valor;
-	
-	@ManyToOne
-	Promocao promocao;
 
 	public int getID() {
 		return ID;
@@ -40,6 +45,30 @@ public class Produto {
 		this.nome = nome;
 	}
 
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getInfo_adicional() {
+		return info_adicional;
+	}
+
+	public void setInfo_adicional(String info_adicional) {
+		this.info_adicional = info_adicional;
+	}
+
+	public String getInfo_adicional2() {
+		return info_adicional2;
+	}
+
+	public void setInfo_adicional2(String info_adicional2) {
+		this.info_adicional2 = info_adicional2;
+	}
+
 	public float getValor() {
 		return valor;
 	}
@@ -49,16 +78,6 @@ public class Produto {
 	}
 	
 	
-	public Promocao getPromocao() {
-		return promocao;
-	}
 
-	public void setPromocao(Promocao promocao) {
-		this.promocao = promocao;
-	}
-
-	public boolean equals(Produto produto) {
-		return this.ID == produto.getID();
-	}
 
 }

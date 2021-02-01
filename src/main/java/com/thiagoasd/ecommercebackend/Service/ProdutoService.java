@@ -38,8 +38,8 @@ public class ProdutoService {
 	}
 
 	public Produto update(int id, Produto produto) throws NotFoundException {
-		consultaPorId(id); // Para checar se dept existe mesmo, se não existir lança exception
-		produto.setID(id); // Salva objeto com a id do path, não do objeto
+		consultaPorId(id);
+		produto.setID(id); 
 		return produtoRepository.save(produto);
 	}
 
