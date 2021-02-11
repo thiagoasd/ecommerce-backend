@@ -5,8 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -14,7 +12,7 @@ import javax.validation.constraints.NotNull;
 public class ProdutoCesta {
 
 	@NotNull
-	@ManyToOne
+	@ManyToOne(targetEntity = Produto.class)
 	Produto produto;
 	
 	@Id
@@ -23,6 +21,7 @@ public class ProdutoCesta {
 	
 	@Min(0)
 	int quantidade;
+	
 
 	public int getQuantidade() {
 		return this.quantidade;
@@ -44,6 +43,14 @@ public class ProdutoCesta {
 		return this.quantidade * this.produto.getValor();
 	}
 	
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+
 	public boolean equals(ProdutoCesta produtoCesta) {
 		return (this.quantidade == produtoCesta.getQuantidade()
 			 && this.produto.equals(produtoCesta.getProduto()));

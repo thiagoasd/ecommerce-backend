@@ -1,9 +1,13 @@
 package com.thiagoasd.ecommercebackend.Domain;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
@@ -28,6 +32,9 @@ public class Promocao {
 	
 	@Min(0)
 	float valor;
+	
+	@OneToMany(mappedBy = "promocao")
+	private List<Produto> produtos;
 
 	public int getID() {
 		return ID;

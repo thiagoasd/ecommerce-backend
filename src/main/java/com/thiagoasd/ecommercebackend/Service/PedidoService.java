@@ -19,11 +19,18 @@ public class PedidoService {
 
 	@Autowired
 	private PedidoRepository pedidoRepository;
+
+	@Autowired
 	private ProdutoRepository produtoRepository;
 
+	@Autowired
+	private ProdutoCestaService produtoCestaService;
+
 	public Pedido salvar(Pedido pedido) throws Exception {
-		
+
 		validatePedido(pedido);
+		pedido.setProdutos(produtoCestaService.salvarLista(pedido.getProdutos()));
+
 		return pedidoRepository.save(pedido);
 	}
 
@@ -46,7 +53,7 @@ public class PedidoService {
 		consultaPorId(id);
 		validatePedido(pedido);
 		pedido.setID(id);
-		
+
 		return pedidoRepository.save(pedido);
 	}
 
@@ -56,7 +63,7 @@ public class PedidoService {
 	}
 
 	private void validatePedido(Pedido pedido) throws Exception {
-		
+
 		for (ProdutoCesta produtoCesta : pedido.getProdutos()) {
 			Optional<Produto> result = produtoRepository.findById(produtoCesta.getProduto().getID());
 

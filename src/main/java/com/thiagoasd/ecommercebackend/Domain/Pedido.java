@@ -18,7 +18,7 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int ID;
 	
-	@OneToMany(targetEntity=ProdutoCesta.class, mappedBy="produto", fetch = FetchType.EAGER)
+	@OneToMany(targetEntity=ProdutoCesta.class, fetch = FetchType.EAGER)
 	List<ProdutoCesta> produtos;
 	
 	public int getID() {

@@ -73,8 +73,8 @@ public class PromocaoController {
 			promocaoService.deletePorId(id);
 			return ResponseEntity.ok().build();
 		} catch (Exception e) {
-			return ResponseEntity.badRequest().build();
-		}
+			throw new ResponseStatusException(HttpStatus.FORBIDDEN, e.getMessage());
 
+		}
 	}
 }
